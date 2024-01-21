@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>C:\Users\tinch\Desktop\Calculator-1.0-SNAPSHOT-shaded.jar</jar>
-  <outfile>C:\Users\tinch\Desktop\myCalculator.exe</outfile>
+  <jar>C:\Users\tinch\projects\Calculator-on-JAVA\Calculator\out\artifacts\Calculator_jar\Calculator.jar</jar>
+  <outfile>C:\Users\tinch\projects\Calculator-on-JAVA\Calculator\myCalculator.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
