@@ -26,11 +26,11 @@ public class Calculator extends Application {
         // Create buttons for digits and operations
         Button[][] buttons = new Button[5][4];  // Changed array size to accommodate "AC"
         String[][] buttonLabels = {
-                {"7", "8", "9", "/"},
+                {"7", "8", "9", "←"},
                 {"4", "5", "6", "*"},
                 {"1", "2", "3", "-"},
                 {"0", ".", "=", "+"},
-                {"√", "²", "←", "AC"}  // Ensure each row has the same length
+                {"√", "²", "/", "AC"}  // Ensure each row has the same length
         };
 
         // Create a GridPane for layout
@@ -99,11 +99,11 @@ public class Calculator extends Application {
 
         for (Button[] buttonRow : buttons) {
             for (Button button : buttonRow) {
-                if (button != null && button != buttons[4][3] && button != buttons[4][2]) {
+                if (button != null && button != buttons[4][3] && button != buttons[0][3]) {
                     button.getStyleClass().add("calculator-button");
                 } else if (button == buttons[4][3]) {
                     button.getStyleClass().add("AC-button");
-                } else if (button == buttons[4][2]) {
+                } else if (button == buttons[0][3]) {
                     button.getStyleClass().add("backspace-button");
                 }
             }
