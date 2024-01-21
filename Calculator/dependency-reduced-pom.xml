@@ -45,7 +45,7 @@
               <shadedArtifactAttached>true</shadedArtifactAttached>
               <transformers>
                 <transformer>
-                  <mainClass>App</mainClass>
+                  <mainClass>org/example/calculator/App.java</mainClass>
                 </transformer>
               </transformers>
             </configuration>
