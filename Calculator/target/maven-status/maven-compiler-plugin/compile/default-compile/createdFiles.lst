@@ -1,6 +1,7 @@
-org/example/calculator/HelloController.class
-org/example/calculator/Calculator$1.class
-org/example/calculator/App.class
+org\example\calculator\HelloApplication.class
+org\example\calculator\Calculator$1.class
 module-info.class
-org/example/calculator/Calculator.class
-org/example/calculator/HelloApplication.class
+org\example\calculator\Calculator$2.class
+org\example\calculator\HelloController.class
+org\example\calculator\Calculator.class
+org\example\calculator\App.class
