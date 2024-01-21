@@ -1,0 +1,43 @@
+/* styles.css */
+.grid-pane {
+    -fx-background-color: #2D2F33; /* Set your desired background color */
+}
+.calculator-button {
+    -fx-font-size: 16px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-background-color: #3498db; /* Change button background color */
+    -fx-text-fill: #ffffff;      /* Change button text color */
+}
+
+.AC-button {
+    -fx-font-size: 16px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-background-color: #A1683A; /* Change button background color */
+    -fx-text-fill: #ffffff;      /* Change button text color */
+}
+
+.calculator-display {
+    -fx-font-size: 18px;
+    -fx-padding: 5px;
+    -fx-background-color: #8B9392; /* Change display background color */
+    -fx-text-fill: #2c3e50;      /* Change display text color */
+}
+.calculator-button:hover {
+    -fx-background-color: #2980b9; /* Hover background color */
+}
+.AC-button:hover {
+    -fx-background-color: #c0392b; /* Hover background color for AC button */
+}
+.backspace-button {
+    -fx-font-size: 16px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-background-color: #2ecc71; /* Default background color for backspace button */
+    -fx-text-fill: white; /* Default text color for backspace button */
+}
+
+.backspace-button:hover {
+    -fx-background-color: #27ae60; /* Hover background color for backspace button */
+}
