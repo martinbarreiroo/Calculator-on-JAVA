@@ -54,12 +54,25 @@ public class Calculator extends Application {
         display.setMaxSize(Double.MAX_VALUE, 100);
         GridPane.setColumnSpan(display, 4);
 
-// Set Vgrow property to SOMETIMES, making the display take only the required vertical space
+        // Set Vgrow property to SOMETIMES, making the display take only the required vertical space
         GridPane.setVgrow(display, Priority.SOMETIMES);
 
         gridPane.add(display, 0, 0);
 
+        // Make the scene resizable
+        primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
+            double fontSize = newVal.doubleValue() / 15; // Adjust this value according to your preference
+            display.setStyle("-fx-font-size: " + fontSize + "px;");
+            gridPane.setPrefWidth(newVal.doubleValue());
+            display.setPrefWidth(newVal.doubleValue() - 20); // Adjust for padding
+        });
 
+        primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
+            double fontSize = newVal.doubleValue() / 15; // Adjust this value according to your preference
+            display.setStyle("-fx-font-size: " + fontSize + "px;");
+            gridPane.setPrefHeight(newVal.doubleValue());
+            display.setPrefHeight(newVal.doubleValue() - 40); // Adjust for padding
+        });
 
         // Add buttons to the gridPane with fade-in animation
         for (int i = 0; i < 5; i++) {
