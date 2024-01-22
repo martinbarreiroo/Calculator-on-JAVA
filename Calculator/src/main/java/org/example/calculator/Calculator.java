@@ -167,11 +167,13 @@ public class Calculator extends Application {
     }
 
     private void handleKeyPressed(KeyEvent event) {
+        System.out.println("Key Pressed: " + event.getCode());
+
         String keyText = event.getText();
 
         if (!keyText.isEmpty() && isValidKey(keyText)) {
             if (event.isShiftDown()) {
-                handleShiftedKey(keyText);
+                handleShiftedKey(event);
             } else {
                 handleButtonClick(keyText);
             }
@@ -248,23 +250,17 @@ public class Calculator extends Application {
         }
     }
 
-    private void handleShiftedKey(String keyText) {
-        // Handle SHIFT + key combinations
-        switch (keyText) {
-            case "7":
-                display.appendText("/");
-                break;
-
-            case "+":
-
-                display.appendText("*");
-                break;
-            case "0":
-
-                display.appendText("=");
-                break;
+    private void handleShiftedKey(KeyEvent event) {
+        if (event.getCode() == KeyCode.DIGIT7 && event.isShiftDown()) {
+            display.appendText("/");
+        } else if (event.getCode() == KeyCode.EQUALS && event.isShiftDown()) {
+            display.appendText("+");
         }
     }
+
+
+
+
 
     private void clearDisplay() {
         Platform.runLater(() -> display.setText(""));
