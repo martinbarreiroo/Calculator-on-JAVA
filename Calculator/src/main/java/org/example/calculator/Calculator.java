@@ -265,7 +265,6 @@ public class Calculator extends Application {
     }
 
     // Helper method to evaluate mathematical expressions
-    // Helper method to evaluate mathematical expressions
     private double eval(String expression) {
         return new Object() {
             int pos = -1, ch;
