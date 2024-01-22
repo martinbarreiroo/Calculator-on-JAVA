@@ -21,7 +21,6 @@ import java.util.Set;
 public class Calculator extends Application {
 
     private TextField display;
-    private boolean enterPressed = false;
 
     @Override
     public void start(Stage primaryStage) {
@@ -129,7 +128,6 @@ public class Calculator extends Application {
         display.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 calculateResult();
-                enterPressed = true; // Set the flag to true after the calculation
                 event.consume(); // Consume the event to prevent it from being processed further
             } else {
                 handleKeyPressed(event);
@@ -156,7 +154,6 @@ public class Calculator extends Application {
     private void handleButtonClick(String value) {
         if ("=".equals(value)) {
             calculateResult();
-            enterPressed = false; // Reset the flag when the "=" button is pressed
         } else if ("AC".equals(value)) {
             clearDisplay();
         } else if ("←".equals(value)) {
@@ -177,12 +174,10 @@ public class Calculator extends Application {
             } else {
                 handleButtonClick(keyText);
             }
-            enterPressed = false; // Reset the flag when any other key is pressed
         } else {
             switch (event.getCode()) {
                 case ENTER:
                     calculateResult();
-                    enterPressed = true; // Set the flag to true after the calculation
                     break;
                 case BACK_SPACE:
                     handleBackspaceButtonClick();
@@ -201,7 +196,6 @@ public class Calculator extends Application {
 
         return validButtons.contains(keyText);
     }
-
 
     private void calculateResult() {
         try {
@@ -224,10 +218,8 @@ public class Calculator extends Application {
             e.printStackTrace();
             display.setText("Error");
         } finally {
-            enterPressed = false; // Reset the flag regardless of the calculation result
         }
     }
-
 
     private double calculateSquareRoot(String expression) {
         String expressionWithoutSqrt = expression.replace("√", "");
@@ -240,7 +232,6 @@ public class Calculator extends Application {
         double operand = eval(expressionWithoutSq);
         return Math.pow(operand, 2);
     }
-
 
 
     private void handleBackspaceButtonClick() {
@@ -257,9 +248,6 @@ public class Calculator extends Application {
             display.appendText("+");
         }
     }
-
-
-
 
 
     private void clearDisplay() {
