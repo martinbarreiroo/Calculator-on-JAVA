@@ -6,7 +6,7 @@
     -fx-font-size: 16px;
     -fx-min-width: 50px;
     -fx-min-height: 50px;
-    -fx-background-color: #3498db; /* Change button background color */
+    -fx-background-color: #686b67; /* Change button background color */
     -fx-text-fill: #ffffff;      /* Change button text color */
 }
 
@@ -34,10 +34,10 @@
     -fx-font-size: 16px;
     -fx-min-width: 50px;
     -fx-min-height: 50px;
-    -fx-background-color: #2ecc71; /* Default background color for backspace button */
+    -fx-background-color: #2c3e50; /* Default background color for backspace button */
     -fx-text-fill: white; /* Default text color for backspace button */
 }
 
 .backspace-button:hover {
-    -fx-background-color: #27ae60; /* Hover background color for backspace button */
+    -fx-background-color: #11181f; /* Hover background color for backspace button */
 }
