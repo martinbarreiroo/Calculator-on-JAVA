@@ -32,7 +32,7 @@ public class Calculator extends Application {
         Button[][] buttons = new Button[5][4];
         String[][] buttonLabels = {
                 {"7", "8", "9", "←"},
-                {"4", "5", "6", "*"},
+                {"4", "5", "6", "x"},
                 {"1", "2", "3", "-"},
                 {"0", ".", "=", "+"},
                 {"√", "²", "/", "AC"}
@@ -194,7 +194,7 @@ public class Calculator extends Application {
         // Define the set of valid button texts
         Set<String> validButtons = Set.of(
                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-                "+", "-", "*", "/", ".", "=", "√", "²", "AC", "←"
+                "+", "-", "x", "/", ".", "=", "√", "²", "AC", "←"
         );
 
         return validButtons.contains(keyText);
@@ -202,9 +202,12 @@ public class Calculator extends Application {
 
 
     private void calculateResult() {
-
         try {
             String expression = display.getText();
+
+            // Replace "x" with "*"
+            expression = expression.replace("x", "*");
+
             if (expression.contains("√")) {
                 double result = calculateSquareRoot(expression);
                 display.setText(String.valueOf(result));
@@ -223,6 +226,7 @@ public class Calculator extends Application {
         }
     }
 
+
     private double calculateSquareRoot(String expression) {
         String expressionWithoutSqrt = expression.replace("√", "");
         double operand = eval(expressionWithoutSqrt);
@@ -234,6 +238,8 @@ public class Calculator extends Application {
         double operand = eval(expressionWithoutSq);
         return Math.pow(operand, 2);
     }
+
+
 
     private void handleBackspaceButtonClick() {
         String currentText = display.getText();
