@@ -9,12 +9,14 @@ import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Calculator extends Application {
 
@@ -23,6 +25,7 @@ public class Calculator extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
         primaryStage.setTitle("Calculator");
 
         // Create buttons for digits and operations
@@ -70,6 +73,7 @@ public class Calculator extends Application {
         });
 
         for (int i = 0; i < 5; i++) {
+
             for (int j = 0; j < 4; j++) {
                 buttons[i][j] = new Button(buttonLabels[i][j]);
                 buttons[i][j].setMinSize(50, 50);
@@ -122,7 +126,16 @@ public class Calculator extends Application {
         });
 
         // Add keyboard input handling
-        display.setOnKeyPressed(this::handleKeyPressed);
+        display.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                calculateResult();
+                enterPressed = true; // Set the flag to true after the calculation
+                event.consume(); // Consume the event to prevent it from being processed further
+            } else {
+                handleKeyPressed(event);
+            }
+        });
+
 
         primaryStage.show();
 
@@ -130,6 +143,7 @@ public class Calculator extends Application {
     }
 
     private void setButtonActions(Button[][] buttons) {
+
         for (Button[] buttonRow : buttons) {
             for (Button button : buttonRow) {
                 if (button != null) {
@@ -155,7 +169,7 @@ public class Calculator extends Application {
     private void handleKeyPressed(KeyEvent event) {
         String keyText = event.getText();
 
-        if (!keyText.isEmpty()) {
+        if (!keyText.isEmpty() && isValidKey(keyText)) {
             if (event.isShiftDown()) {
                 handleShiftedKey(keyText);
             } else {
@@ -165,10 +179,8 @@ public class Calculator extends Application {
         } else {
             switch (event.getCode()) {
                 case ENTER:
-                    if (!enterPressed) {
-                        calculateResult();
-                        enterPressed = true; // Set the flag to true after the calculation
-                    }
+                    calculateResult();
+                    enterPressed = true; // Set the flag to true after the calculation
                     break;
                 case BACK_SPACE:
                     handleBackspaceButtonClick();
@@ -178,7 +190,19 @@ public class Calculator extends Application {
         }
     }
 
+    private boolean isValidKey(String keyText) {
+        // Define the set of valid button texts
+        Set<String> validButtons = Set.of(
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                "+", "-", "*", "/", ".", "=", "√", "²", "AC", "←"
+        );
+
+        return validButtons.contains(keyText);
+    }
+
+
     private void calculateResult() {
+
         try {
             String expression = display.getText();
             if (expression.contains("√")) {
@@ -194,6 +218,8 @@ public class Calculator extends Application {
         } catch (Exception e) {
             e.printStackTrace();
             display.setText("Error");
+        } finally {
+            enterPressed = false; // Reset the flag regardless of the calculation result
         }
     }
 
