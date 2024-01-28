@@ -204,22 +204,26 @@ public class Calculator extends Application {
             // Replace "x" with "*"
             expression = expression.replace("x", "*");
 
+            double result;
+
             if (expression.contains("√")) {
-                double result = calculateSquareRoot(expression);
-                display.setText(String.valueOf(result));
+                result = calculateSquareRoot(expression);
             } else if (expression.contains("²")) {
-                double result = calculateSquare(expression);
-                display.setText(String.valueOf(result));
+                result = calculateSquare(expression);
             } else {
-                double result = eval(expression);
-                display.setText(String.valueOf(result));
+                result = eval(expression);
             }
+
+            // Round the result to three decimal places
+            result = Math.round(result * 1000.0) / 1000.0;
+
+            display.setText(String.valueOf(result));
         } catch (Exception e) {
             e.printStackTrace();
             display.setText("Error");
-        } finally {
         }
     }
+
 
     private double calculateSquareRoot(String expression) {
         String expressionWithoutSqrt = expression.replace("√", "");
