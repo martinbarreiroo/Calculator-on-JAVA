@@ -32,7 +32,7 @@ public class Calculator extends Application {
                 {"7", "8", "9", "←", "AC"},
                 {"4", "5", "6", "x", "/"},
                 {"1", "2", "3", "-", "+"},
-                {"0", ".", "√", "²", "="}
+                {"0", ".", "=", "√", "²"}
         };
 
 
@@ -103,13 +103,16 @@ public class Calculator extends Application {
 
         for (Button[] buttonRow : buttons) {
             for (Button button : buttonRow) {
-                if (button != null && button != buttons[0][3] && button != buttons[0][4]) {
+                if (button != null && button != buttons[0][3] && button != buttons[0][4] && button != buttons[3][2] && button != buttons[3][3] && button != buttons[3][4] && button != buttons[2][3] && button != buttons[2][4] && button != buttons[1][3] && button != buttons[1][4]) {
                     button.getStyleClass().add("calculator-button");
                 } else if (button == buttons[0][4]) {
                     button.getStyleClass().add("AC-button");
                 } else if (button == buttons[0][3]) {
                     button.getStyleClass().add("backspace-button");
+                } else if (button == buttons[3][2]) {
+                    button.getStyleClass().add("equals-button");
                 }
+                else button.getStyleClass().add("ops-button");
             }
         }
 
