@@ -27,32 +27,31 @@ public class Calculator extends Application {
 
         primaryStage.setTitle("Calculator");
 
-        // Create buttons for digits and operations
-        Button[][] buttons = new Button[5][4];
+        Button[][] buttons = new Button[4][5];
         String[][] buttonLabels = {
-                {"7", "8", "9", "←"},
-                {"4", "5", "6", "x"},
-                {"1", "2", "3", "-"},
-                {"0", ".", "=", "+"},
-                {"√", "²", "/", "AC"}
+                {"7", "8", "9", "←", "AC"},
+                {"4", "5", "6", "x", "/"},
+                {"1", "2", "3", "-", "+"},
+                {"0", ".", "√", "²", "="}
         };
 
+
         GridPane gridPane = new GridPane();
-        gridPane.setPadding(new Insets(10, 10, 10, 10));
-        gridPane.setVgap(5);
-        gridPane.setHgap(5);
+        gridPane.setPadding(new Insets(10, 13, 10, 13));
+        gridPane.setVgap(6);
+        gridPane.setHgap(6);
         gridPane.getStyleClass().add("grid-pane");
 
         ColumnConstraints columnConstraints = new ColumnConstraints();
-        columnConstraints.setPercentWidth(25);
-        for (int i = 0; i < 4; i++) {
+        columnConstraints.setPercentWidth(35);
+        for (int i = 0; i < 5; i++) {
             gridPane.getColumnConstraints().add(columnConstraints);
         }
 
         display = new TextField();
         display.setEditable(false);
-        display.setMinSize(200, 30);
-        display.setMaxSize(Double.MAX_VALUE, 100);
+        display.setMinSize(260, 30);
+        display.setMaxSize(Double.MAX_VALUE, 80);
         GridPane.setColumnSpan(display, 4);
         GridPane.setVgrow(display, Priority.SOMETIMES);
         gridPane.add(display, 0, 0);
@@ -71,9 +70,9 @@ public class Calculator extends Application {
             display.setPrefHeight(newVal.doubleValue() - 40);
         });
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
 
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < 5; j++) {
                 buttons[i][j] = new Button(buttonLabels[i][j]);
                 buttons[i][j].setMinSize(50, 50);
                 buttons[i][j].setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -94,7 +93,7 @@ public class Calculator extends Application {
 
         setButtonActions(buttons);
 
-        Scene scene = new Scene(gridPane, 250, 350);
+        Scene scene = new Scene(gridPane, 285, 340);
         scene.getStylesheets().add(Objects.requireNonNull(
                 getClass().getResource("/org/example/calculator/styles.css")
         ).toExternalForm());
@@ -104,9 +103,9 @@ public class Calculator extends Application {
 
         for (Button[] buttonRow : buttons) {
             for (Button button : buttonRow) {
-                if (button != null && button != buttons[4][3] && button != buttons[0][3]) {
+                if (button != null && button != buttons[0][3] && button != buttons[0][4]) {
                     button.getStyleClass().add("calculator-button");
-                } else if (button == buttons[4][3]) {
+                } else if (button == buttons[0][4]) {
                     button.getStyleClass().add("AC-button");
                 } else if (button == buttons[0][3]) {
                     button.getStyleClass().add("backspace-button");
